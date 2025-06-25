@@ -42,7 +42,9 @@ def ask_question(question, prize, lifelines):
     answer = int(input("Your answer in preference to question(1-4) or press 0 to exit: "))
     
     if answer == 0:
-        print(f"You have out of the game , money you take home with you {prize} rupees")
+        # If user exits, show the last won amount (previous question's prize) or 0 if first question
+        take_home = levels[question_data.index(question)-1] if question_data.index(question) > 0 else 0
+        print(f"You have out of the game, money you take home with you {take_home} rupees")
         return False, lifeline_used
     
     if prize == 70000000:
@@ -53,7 +55,7 @@ def ask_question(question, prize, lifelines):
         return True, lifeline_used
     else:
         print(f"answer is incorrect, the correct answer is {question[question[-1]]}") 
-        print(f"your take home money is {prize}rupees")
+        print(f"your take home money is 0 rupees")
         return False, lifeline_used
 
 
